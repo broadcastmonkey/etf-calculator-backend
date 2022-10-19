@@ -1,4 +1,5 @@
 # Logs
+images/*
 .DS_STORE
 logs
 *.log
