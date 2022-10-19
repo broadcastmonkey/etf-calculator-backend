@@ -77,8 +77,8 @@ class ChessSocketServer {
     if (error) return callback ? callback({ error: "error 2" }) : null;
 
     console.log("user added", user);
-    socket.join("chess");
-    if (callback) callback("chess"); // obj: successfuly joined ?
+    //socket.join("chess");
+    //if (callback) callback("chess"); // obj: successfuly joined ?
   };
 
   handleDisconnect = (socket) => {
@@ -99,20 +99,25 @@ class ChessSocketServer {
     const python = spawn("python", [
       "./etf-backend/calculate-etf.py",
       data.score,
+      data.portfolio,
     ]);
     // collect data from script
+
+    console.log("score: " + data.score + ",  portfolio: " + data.portfolio);
+    dataToSend = "";
+
     python.stdout.on("data", function (data) {
-      console.log("Pipe data from python script ...");
-      dataToSend = data.toString();
-      console.log(dataToSend);
+      dataToSend += data.toString();
     });
     // in close event we are sure that stream from child process is closed
     python.on("close", (code) => {
       console.log(`child process close all stdio with code ${code}`);
+      console.log(JSON.parse(dataToSend));
+      socket.emit("scoreRequestFinished", JSON.parse(dataToSend));
       // send data to browser
       //res.send(dataToSend);
     });
-    socket.emit("scoreRequestFinished", "your score is : " + data.score);
+    //socket.emit("scoreRequestFinished", "your score is : " + data.score);
   };
 
   debugLog = (functionName, data) => {
