@@ -101,6 +101,8 @@ class ChessSocketServer {
       data.score,
       data.portfolio,
     ]);
+
+    if (data.portfolio > 1000000) return;
     // collect data from script
 
     console.log("score: " + data.score + ",  portfolio: " + data.portfolio);
