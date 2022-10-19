@@ -35,33 +35,33 @@ def optimal_portfolio(score, portfolio_value):
         risk_aversion_coeff = 6
 
     if score > 10 and score <= 15:
-        min_bonds = 0.4
-        min_growth = 0.2
-        min_value = 0.4
+        min_bonds = 0.45
+        min_growth = 0
+        min_value = 0.35
         risk_aversion_coeff = 5
 
     if score > 15 and score <= 20:
         min_bonds = 0.4
-        min_growth = 0.2
-        min_value = 0.4
+        min_growth = 0.3
+        min_value = 0.3
         risk_aversion_coeff = 4
 
     if score > 20 and score <= 30:
-        min_bonds = 0.3
-        min_growth = 0.2
+        min_bonds = 0.35
+        min_growth = 0.25
         min_value = 0.4
         risk_aversion_coeff = 3
 
     if score > 30 and score <= 34:
         min_bonds = 0.3
-        min_growth = 0.2
-        min_value = 0.4
+        min_growth = 0.35
+        min_value = 0
         risk_aversion_coeff = 2
 
     if score > 34:
-        min_bonds = 0.2
-        min_growth = 0.3
-        min_value = 0.4
+        min_bonds = 0.25
+        min_growth = 0.5
+        min_value = 0
         risk_aversion_coeff = 1
 
     # Calculate expected returns and sample covariance
