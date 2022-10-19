@@ -105,7 +105,7 @@ def optimal_portfolio(score, portfolio_value):
 
     data = {
         'allocation': allocation,
-        'leftover': leftover,
+        'leftover': round(leftover, 2),
         'annualised_return': round(ret[0]*100, 2),
         'annualised_volatality': round(ret[1]*100, 2),
         'sharpe_ratio': round(ret[2], 3)
